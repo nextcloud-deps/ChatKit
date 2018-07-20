@@ -521,11 +521,26 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
     }
 
     @SuppressWarnings("unchecked")
-    private boolean isPreviousSameAuthor(String id, int position) {
+    public boolean isPreviousSameAuthor(String id, int position) {
         int prevPosition = position + 1;
         if (items.size() <= prevPosition) return false;
         else return items.get(prevPosition).item instanceof IMessage
                 && ((MESSAGE) items.get(prevPosition).item).getUser().getId().contentEquals(id);
+    }
+
+    public int getSameAuthorLastMessagesCount(String id) {
+        int count = 0;
+
+        for (int i = items.size() - 1; i <= 0; i--) {
+            if (!(items.get(i).item instanceof IMessage)) return count;
+            if (((MESSAGE) items.get(i).item).getUser().getId().contentEquals(id)) {
+                count++;
+            } else {
+                return count;
+            }
+        }
+
+        return count;
     }
 
     private void incrementSelectedItemsCount() {
