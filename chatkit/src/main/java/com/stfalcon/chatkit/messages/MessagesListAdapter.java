@@ -531,7 +531,7 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
     public int getSameAuthorLastMessagesCount(String id) {
         int count = 0;
 
-        for (int i = items.size() - 1; i <= 0; i--) {
+        for (int i = 0; i < items.size(); i++) {
             if (!(items.get(i).item instanceof IMessage)) return count;
             if (((MESSAGE) items.get(i).item).getUser().getId().contentEquals(id)) {
                 count++;
