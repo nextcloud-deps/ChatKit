@@ -526,15 +526,18 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
         int prevPosition = position + 1;
         if (items.size() <= prevPosition) return false;
         else return items.get(prevPosition).item instanceof IMessage
-                && ((MESSAGE) items.get(prevPosition).item).getUser().getId().contentEquals(id);
+                && ((MESSAGE) items.get(prevPosition).item).getUser().getId().contentEquals(id) &&
+                TextUtils.isEmpty(((MESSAGE) items.get(prevPosition).item).getSystemMessage());
     }
 
     public int getSameAuthorLastMessagesCount(String id) {
         int count = 0;
 
+        MESSAGE item;
         for (int i = 0; i < items.size(); i++) {
             if (!(items.get(i).item instanceof IMessage)) return count;
-            if (((MESSAGE) items.get(i).item).getUser().getId().contentEquals(id)) {
+            item = (MESSAGE) items.get(i).item;
+            if ((item.getUser().getId().contentEquals(id) && TextUtils.isEmpty(item.getSystemMessage()))) {
                 count++;
             } else {
                 return count;
