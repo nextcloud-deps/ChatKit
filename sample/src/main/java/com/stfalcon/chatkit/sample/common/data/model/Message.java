@@ -46,6 +46,11 @@ public class Message implements IMessage,
     }
 
     @Override
+    public String getSystemMessage() {
+        return null;
+    }
+
+    @Override
     public User getUser() {
         return this.user;
     }
