@@ -50,4 +50,11 @@ public interface IMessage {
      * @return the message creation date
      */
     Date getCreatedAt();
+
+    /**
+     * Returns system message type
+     *
+     * @return the message creation date
+     */
+    String getSystemMessage();
 }

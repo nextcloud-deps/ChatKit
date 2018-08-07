@@ -22,6 +22,7 @@ import android.content.Context;
 import android.support.annotation.LayoutRes;
 import android.support.v7.widget.RecyclerView;
 import android.text.Spannable;
+import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.util.SparseArray;
 import android.util.TypedValue;
@@ -131,7 +132,7 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
     public int getMessagesCount() {
         int count = 0;
         for (Wrapper item : items) {
-            if (item.item instanceof IMessage) {
+            if (item.item instanceof IMessage && (TextUtils.isEmpty(((IMessage) item.item).getSystemMessage()))) {
                 count++;
             }
         }

@@ -39,4 +39,12 @@ public interface MessageContentType extends IMessage {
 
     // other default types will be here
 
+    /**
+     * Default media type for image message.
+     */
+    interface SystemMessage extends IMessage {
+        @Nullable
+        String getSystemMessage();
+    }
+
 }
