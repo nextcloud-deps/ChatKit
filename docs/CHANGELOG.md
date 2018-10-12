@@ -1,3 +1,20 @@
+## Version 0.3.3 (2018/10/12)
+* Merged: Added upsert method to move a specific item to the start. [#209](https://github.com/stfalcon-studio/ChatKit/pull/209)
+
+## Version 0.3.2 (2018/09/28)
+* [Passing custom data to ImageLoader](https://github.com/stfalcon-studio/ChatKit/issues/183)
+* Fixed [#198](https://github.com/stfalcon-studio/ChatKit/issues/198)
+* Protected `items` field in `MessagesListAdapter` and `DialogsListAdapte` [#188](https://github.com/stfalcon-studio/ChatKit/issues/188)
+* Fixed `delete` and `deleteByIds` methods in MessagesListAdapter
+* Merged: Clear last message if null in dialog list (Fix issue #189) [#190](https://github.com/stfalcon-studio/ChatKit/pull/190)
+* Merged: Add upsert method to dialogs list [#191](https://github.com/stfalcon-studio/ChatKit/pull/191)
+* Merged: Update documentation to add upsertItem method [#208](https://github.com/stfalcon-studio/ChatKit/pull/208)
+
+## Version 0.3.1 (2018/08/16)
+* [Passing custom data to your ViewHolder](https://github.com/stfalcon-studio/ChatKit/blob/master/docs/COMPONENT_MESSAGES_LIST.md#passing-custom-data-to-your-viewholder) [#180](https://github.com/stfalcon-studio/ChatKit/issues/180)
+* Added Proguard rules to [Readme](https://github.com/stfalcon-studio/ChatKit#proguard) and [sample project](https://github.com/stfalcon-studio/ChatKit/blob/master/sample/proguard-rules.pro). [#122](https://github.com/stfalcon-studio/ChatKit/issues/122)
+* Fixed [#174](https://github.com/stfalcon-studio/ChatKit/issues/174)
+
 ## Version 0.3.0 (2018/07/12)
 * [Added Typing Listener to MessageInput](https://github.com/stfalcon-studio/ChatKit/blob/master/docs/COMPONENT_MESSAGE_INPUT.MD#typing-listener). Thanks to [toanpv](https://github.com/toanpv);
 * Fixed artifacts with bubble background in message list;
