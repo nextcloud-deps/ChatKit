@@ -43,7 +43,7 @@ To implement all of the features above you can use the following components:
 
 Download via Gradle:
 ```gradle
-compile 'com.github.stfalcon:chatkit:0.3.0'
+compile 'com.github.stfalcon:chatkit:0.3.3'
 ```
 
 or Maven:
@@ -51,9 +51,30 @@ or Maven:
 <dependency>
   <groupId>com.github.stfalcon</groupId>
   <artifactId>chatkit</artifactId>
-  <version>0.3.0</version>
+  <version>0.3.3</version>
   <type>pom</type>
 </dependency>
+```
+
+### Proguard
+If you are using ProGuard you might need to add rules:
+```
+-keep class * extends com.stfalcon.chatkit.messages.MessageHolders$OutcomingTextMessageViewHolder {
+     public <init>(android.view.View, java.lang.Object);
+     public <init>(android.view.View);
+ }
+-keep class * extends com.stfalcon.chatkit.messages.MessageHolders$IncomingTextMessageViewHolder {
+     public <init>(android.view.View, java.lang.Object);
+     public <init>(android.view.View);
+ }
+-keep class * extends com.stfalcon.chatkit.messages.MessageHolders$IncomingImageMessageViewHolder {
+     public <init>(android.view.View, java.lang.Object);
+     public <init>(android.view.View);
+ }
+-keep class * extends com.stfalcon.chatkit.messages.MessageHolders$OutcomingImageMessageViewHolder {
+     public <init>(android.view.View, java.lang.Object);
+     public <init>(android.view.View);
+ }
 ```
 
 ### Try it
