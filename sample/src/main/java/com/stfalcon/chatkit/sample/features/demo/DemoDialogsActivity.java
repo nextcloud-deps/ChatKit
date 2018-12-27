@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.squareup.picasso.Picasso;
 import com.stfalcon.chatkit.commons.ImageLoader;
 import com.stfalcon.chatkit.dialogs.DialogsListAdapter;
@@ -27,8 +28,8 @@ public abstract class DemoDialogsActivity extends AppCompatActivity
 
         imageLoader = new ImageLoader() {
             @Override
-            public void loadImage(ImageView imageView, String url) {
-                Picasso.with(DemoDialogsActivity.this).load(url).into(imageView);
+            public void loadImage(SimpleDraweeView imageView, String url) {
+
             }
         };
     }

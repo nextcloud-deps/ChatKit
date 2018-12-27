@@ -53,5 +53,6 @@ dependencies {
 
     //Utils
     implementation "me.relex:circleindicator:$circleindicatorVersion"
+    implementation 'com.facebook.fresco:fresco:1.11.0'
 
 }

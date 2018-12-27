@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.squareup.picasso.Picasso;
 import com.stfalcon.chatkit.commons.ImageLoader;
 import com.stfalcon.chatkit.messages.MessagesListAdapter;
@@ -45,8 +46,8 @@ public abstract class DemoMessagesActivity extends AppCompatActivity
 
         imageLoader = new ImageLoader() {
             @Override
-            public void loadImage(ImageView imageView, String url) {
-                Picasso.with(DemoMessagesActivity.this).load(url).into(imageView);
+            public void loadImage(SimpleDraweeView imageView, String url) {
+
             }
         };
     }
