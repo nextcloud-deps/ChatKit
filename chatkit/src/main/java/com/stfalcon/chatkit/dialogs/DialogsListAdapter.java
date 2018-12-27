@@ -28,6 +28,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.stfalcon.chatkit.R;
 import com.stfalcon.chatkit.commons.ImageLoader;
 import com.stfalcon.chatkit.commons.ViewHolder;
@@ -496,8 +497,8 @@ public class DialogsListAdapter<DIALOG extends IDialog>
         protected ViewGroup root;
         protected TextView tvName;
         protected TextView tvDate;
-        protected ImageView ivAvatar;
-        protected ImageView ivLastMessageUser;
+        protected SimpleDraweeView ivAvatar;
+        protected SimpleDraweeView ivLastMessageUser;
         protected TextView tvLastMessage;
         protected TextView tvBubble;
         protected ViewGroup dividerContainer;
@@ -511,8 +512,8 @@ public class DialogsListAdapter<DIALOG extends IDialog>
             tvDate = (TextView) itemView.findViewById(R.id.dialogDate);
             tvLastMessage = (TextView) itemView.findViewById(R.id.dialogLastMessage);
             tvBubble = (TextView) itemView.findViewById(R.id.dialogUnreadBubble);
-            ivLastMessageUser = (ImageView) itemView.findViewById(R.id.dialogLastMessageUserAvatar);
-            ivAvatar = (ImageView) itemView.findViewById(R.id.dialogAvatar);
+            ivLastMessageUser = itemView.findViewById(R.id.dialogLastMessageUserAvatar);
+            ivAvatar = itemView.findViewById(R.id.dialogAvatar);
             dividerContainer = (ViewGroup) itemView.findViewById(R.id.dialogDividerContainer);
             divider = itemView.findViewById(R.id.dialogDivider);
 
