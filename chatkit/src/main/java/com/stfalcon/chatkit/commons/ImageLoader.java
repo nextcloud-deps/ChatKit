@@ -18,11 +18,12 @@ package com.stfalcon.chatkit.commons;
 
 import android.widget.ImageView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
+
 /**
  * Callback for implementing images loading in message list
  */
 public interface ImageLoader {
 
-    void loadImage(ImageView imageView, String url);
-
+    void loadImage(SimpleDraweeView imageView, String url);
 }

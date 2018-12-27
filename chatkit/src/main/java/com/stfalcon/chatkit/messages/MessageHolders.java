@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.stfalcon.chatkit.R;
 import com.stfalcon.chatkit.commons.ImageLoader;
 import com.stfalcon.chatkit.commons.ViewHolder;
@@ -608,22 +609,13 @@ public class MessageHolders {
     public static class IncomingImageMessageViewHolder<MESSAGE extends MessageContentType.Image>
             extends BaseIncomingMessageViewHolder<MESSAGE> {
 
-        protected ImageView image;
+        protected SimpleDraweeView image;
         protected View imageOverlay;
 
         public IncomingImageMessageViewHolder(View itemView) {
             super(itemView);
-            image = (ImageView) itemView.findViewById(R.id.image);
+            image = itemView.findViewById(R.id.image);
             imageOverlay = itemView.findViewById(R.id.imageOverlay);
-
-            if (image != null && image instanceof RoundedImageView) {
-                ((RoundedImageView) image).setCorners(
-                        R.dimen.message_bubble_corners_radius,
-                        R.dimen.message_bubble_corners_radius,
-                        R.dimen.message_bubble_corners_radius,
-                        0
-                );
-            }
         }
 
         @Override
@@ -659,22 +651,13 @@ public class MessageHolders {
     public static class OutcomingImageMessageViewHolder<MESSAGE extends MessageContentType.Image>
             extends BaseOutcomingMessageViewHolder<MESSAGE> {
 
-        protected ImageView image;
+        protected SimpleDraweeView image;
         protected View imageOverlay;
 
         public OutcomingImageMessageViewHolder(View itemView) {
             super(itemView);
-            image = (ImageView) itemView.findViewById(R.id.image);
+            image = itemView.findViewById(R.id.image);
             imageOverlay = itemView.findViewById(R.id.imageOverlay);
-
-            if (image != null && image instanceof RoundedImageView) {
-                ((RoundedImageView) image).setCorners(
-                        R.dimen.message_bubble_corners_radius,
-                        R.dimen.message_bubble_corners_radius,
-                        0,
-                        R.dimen.message_bubble_corners_radius
-                );
-            }
         }
 
         @Override
@@ -749,12 +732,12 @@ public class MessageHolders {
             extends BaseMessageViewHolder<MESSAGE> implements DefaultMessageViewHolder {
 
         protected TextView time;
-        protected ImageView userAvatar;
+        protected SimpleDraweeView userAvatar;
 
         public BaseIncomingMessageViewHolder(View itemView) {
             super(itemView);
             time = (TextView) itemView.findViewById(R.id.messageTime);
-            userAvatar = (ImageView) itemView.findViewById(R.id.messageUserAvatar);
+            userAvatar = itemView.findViewById(R.id.messageUserAvatar);
         }
 
         @Override
