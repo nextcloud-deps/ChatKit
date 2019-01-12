@@ -21,6 +21,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.widget.Space;
+import android.support.v7.widget.AppCompatEditText;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
@@ -42,7 +43,7 @@ import java.lang.reflect.Field;
 public class MessageInput extends RelativeLayout
         implements View.OnClickListener, TextWatcher, View.OnFocusChangeListener {
 
-    protected EditText messageInput;
+    protected AppCompatEditText messageInput;
     protected ImageButton messageSendButton;
     protected ImageButton attachmentButton;
     protected Space sendButtonSpace, attachmentButtonSpace;
@@ -102,7 +103,7 @@ public class MessageInput extends RelativeLayout
      *
      * @return EditText
      */
-    public EditText getInputEditText() {
+    public AppCompatEditText getInputEditText() {
         return messageInput;
     }
 
@@ -226,7 +227,7 @@ public class MessageInput extends RelativeLayout
     private void init(Context context) {
         inflate(context, R.layout.view_message_input, this);
 
-        messageInput = (EditText) findViewById(R.id.messageInput);
+        messageInput = (AppCompatEditText) findViewById(R.id.messageInput);
         messageSendButton = (ImageButton) findViewById(R.id.messageSendButton);
         attachmentButton = (ImageButton) findViewById(R.id.attachmentButton);
         sendButtonSpace = (Space) findViewById(R.id.sendButtonSpace);
