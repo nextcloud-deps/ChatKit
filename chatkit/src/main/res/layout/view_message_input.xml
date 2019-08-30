@@ -17,7 +17,7 @@
         android:layout_toEndOf="@id/attachmentButton"
         android:layout_toRightOf="@id/attachmentButton"/>
 
-    <android.support.v7.widget.AppCompatEditText
+    <androidx.emoji.widget.EmojiEditText
         android:id="@id/messageInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

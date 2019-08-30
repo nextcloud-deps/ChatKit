@@ -32,6 +32,7 @@ import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.emoji.widget.EmojiEditText;
 import com.stfalcon.chatkit.R;
 
 import java.lang.reflect.Field;
@@ -43,7 +44,7 @@ import java.lang.reflect.Field;
 public class MessageInput extends RelativeLayout
         implements View.OnClickListener, TextWatcher, View.OnFocusChangeListener {
 
-    protected AppCompatEditText messageInput;
+    protected EmojiEditText messageInput;
     protected ImageButton messageSendButton;
     protected ImageButton attachmentButton;
     protected Space sendButtonSpace, attachmentButtonSpace;
@@ -103,7 +104,7 @@ public class MessageInput extends RelativeLayout
      *
      * @return EditText
      */
-    public AppCompatEditText getInputEditText() {
+    public EmojiEditText getInputEditText() {
         return messageInput;
     }
 
@@ -227,11 +228,11 @@ public class MessageInput extends RelativeLayout
     private void init(Context context) {
         inflate(context, R.layout.view_message_input, this);
 
-        messageInput = (AppCompatEditText) findViewById(R.id.messageInput);
-        messageSendButton = (ImageButton) findViewById(R.id.messageSendButton);
-        attachmentButton = (ImageButton) findViewById(R.id.attachmentButton);
-        sendButtonSpace = (Space) findViewById(R.id.sendButtonSpace);
-        attachmentButtonSpace = (Space) findViewById(R.id.attachmentButtonSpace);
+        messageInput = findViewById(R.id.messageInput);
+        messageSendButton = findViewById(R.id.messageSendButton);
+        attachmentButton = findViewById(R.id.attachmentButton);
+        sendButtonSpace = findViewById(R.id.sendButtonSpace);
+        attachmentButtonSpace = findViewById(R.id.attachmentButtonSpace);
 
         messageSendButton.setOnClickListener(this);
         attachmentButton.setOnClickListener(this);
