@@ -4,6 +4,7 @@ import android.os.Bundle;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.stfalcon.chatkit.sample.R;
 import com.stfalcon.chatkit.sample.features.demo.custom.holder.CustomHolderDialogsActivity;
 import com.stfalcon.chatkit.sample.features.demo.custom.layout.CustomLayoutDialogsActivity;
@@ -23,15 +24,16 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Fresco.initialize(getApplicationContext());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ViewPager pager = (ViewPager) findViewById(R.id.pager);
+        ViewPager pager = findViewById(R.id.pager);
         pager.setAdapter(new MainActivityPagerAdapter(this, getSupportFragmentManager()));
         pager.setPageMargin((int) getResources().getDimension(R.dimen.card_padding) / 4);
         pager.setOffscreenPageLimit(3);
 
-        CircleIndicator indicator = (CircleIndicator) findViewById(R.id.indicator);
+        CircleIndicator indicator = findViewById(R.id.indicator);
         indicator.setViewPager(pager);
 
     }
