@@ -33,14 +33,13 @@ publish {
 }
 
 ext {
-    supportVersion = '27.1.1'
-    flexboxVersion = '1.0.0'
+    flexboxVersion = '1.1.0'
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'com.google.android.material:material:1.0.0'
     implementation "com.google.android:flexbox:$flexboxVersion"
     implementation 'com.facebook.fresco:fresco:1.11.0'
