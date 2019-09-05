@@ -25,5 +25,5 @@ import com.facebook.drawee.view.SimpleDraweeView;
  */
 public interface ImageLoader {
 
-    void loadImage(SimpleDraweeView imageView, String url);
+    void loadImage(SimpleDraweeView imageView, @Nullable String url, @Nullable Object payload);
 }

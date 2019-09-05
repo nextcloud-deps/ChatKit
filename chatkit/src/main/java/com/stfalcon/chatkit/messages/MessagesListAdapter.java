@@ -52,9 +52,9 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
 
     protected static boolean isSelectionModeEnabled;
 
+    protected List<Wrapper> items;
     private MessageHolders holders;
     private String senderId;
-    private List<Wrapper> items;
 
     private int selectedItemsCount;
     private SelectionListener selectionListener;
@@ -215,6 +215,22 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
     }
 
     /**
+     * Moves the elements position from current to start
+     *
+     * @param newMessage new message object.
+     */
+    public void updateAndMoveToStart(MESSAGE newMessage) {
+        int position = getMessagePositionById(newMessage.getId());
+        if (position >= 0) {
+            Wrapper<MESSAGE> element = new Wrapper<>(newMessage);
+            items.remove(position);
+            items.add(0, element);
+            notifyItemMoved(position, 0);
+            notifyItemChanged(0);
+        }
+    }
+
+    /**
      * Updates message by its id if it exists, add to start if not
      *
      * @param message message object to insert or update.
@@ -222,6 +238,24 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
     public void upsert(MESSAGE message) {
         if (!update(message)) {
             addToStart(message, false);
+        }
+    }
+
+    /**
+     * Updates and moves to start if message by its id exists and if specified move to start, if not
+     * specified the item stays at current position and updated
+     *
+     * @param message message object to insert or update.
+     */
+    public void upsert(MESSAGE message, boolean moveToStartIfUpdate) {
+        if (moveToStartIfUpdate) {
+            if (getMessagePositionById(message.getId()) > 0) {
+                updateAndMoveToStart(message);
+            } else {
+                upsert(message);
+            }
+        } else {
+            upsert(message);
         }
     }
 
@@ -240,12 +274,18 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
      * @param messages messages list to delete.
      */
     public void delete(List<MESSAGE> messages) {
+        boolean result = false;
         for (MESSAGE message : messages) {
             int index = getMessagePositionById(message.getId());
-            items.remove(index);
-            notifyItemRemoved(index);
+            if (index >= 0) {
+                items.remove(index);
+                notifyItemRemoved(index);
+                result = true;
+            }
         }
-        recountDateHeaders();
+        if (result) {
+            recountDateHeaders();
+        }
     }
 
     /**
@@ -268,12 +308,18 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
      * @param ids array of identifiers of messages to delete.
      */
     public void deleteByIds(String[] ids) {
+        boolean result = false;
         for (String id : ids) {
             int index = getMessagePositionById(id);
-            items.remove(index);
-            notifyItemRemoved(index);
+            if (index >= 0) {
+                items.remove(index);
+                notifyItemRemoved(index);
+                result = true;
+            }
         }
-        recountDateHeaders();
+        if (result) {
+            recountDateHeaders();
+        }
     }
 
     /**
@@ -483,7 +529,7 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
         }
     }
 
-    private void generateDateHeaders(List<MESSAGE> messages) {
+    protected void generateDateHeaders(List<MESSAGE> messages) {
         for (int i = 0; i < messages.size(); i++) {
             MESSAGE message = messages.get(i);
             this.items.add(new Wrapper<>(message));
@@ -660,9 +706,9 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
     /*
      * WRAPPER
      * */
-    private class Wrapper<DATA> {
-        protected DATA item;
-        protected boolean isSelected;
+    public class Wrapper<DATA> {
+        public DATA item;
+        public boolean isSelected;
 
         Wrapper(DATA item) {
             this.item = item;

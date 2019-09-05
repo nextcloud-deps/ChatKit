@@ -52,7 +52,7 @@ import static android.view.View.VISIBLE;
 public class DialogsListAdapter<DIALOG extends IDialog>
         extends RecyclerView.Adapter<DialogsListAdapter.BaseDialogViewHolder> {
 
-    private List<DIALOG> items = new ArrayList<>();
+    protected List<DIALOG> items = new ArrayList<>();
     private int itemLayoutId;
     private Class<? extends BaseDialogViewHolder> holderClass;
     private ImageLoader imageLoader;
@@ -200,7 +200,7 @@ public class DialogsListAdapter<DIALOG extends IDialog>
      */
     public void addItem(DIALOG dialog) {
         items.add(dialog);
-        notifyItemInserted(0);
+        notifyItemInserted(items.size() - 1);
     }
 
     /**
@@ -254,6 +254,26 @@ public class DialogsListAdapter<DIALOG extends IDialog>
                 notifyItemChanged(i);
                 break;
             }
+        }
+    }
+
+    /**
+     * Upsert dialog in dialogs list or add it to then end of dialogs list
+     *
+     * @param item dialog item
+     */
+    public void upsertItem(DIALOG item) {
+        boolean updated = false;
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).getId().equals(item.getId())) {
+                items.set(i, item);
+                notifyItemChanged(i);
+                updated = true;
+                break;
+            }
+        }
+        if (!updated) {
+            addItem(item);
         }
     }
 
@@ -421,7 +441,7 @@ public class DialogsListAdapter<DIALOG extends IDialog>
     void setStyle(DialogListStyle dialogStyle) {
         this.dialogStyle = dialogStyle;
     }
-    
+
     /**
     * @return the position of a dialog in the dialogs list.
     */
@@ -631,23 +651,28 @@ public class DialogsListAdapter<DIALOG extends IDialog>
                 tvDate.setText(formattedDate == null
                         ? getDateString(lastMessageDate)
                         : formattedDate);
+            } else {
+                tvDate.setText(null);
             }
 
             //Set Dialog avatar
             if (imageLoader != null) {
-                imageLoader.loadImage(ivAvatar, dialog.getDialogPhoto());
+                imageLoader.loadImage(ivAvatar, dialog.getDialogPhoto(), null);
             }
 
             //Set Last message user avatar with check if there is last message
             if (imageLoader != null && dialog.getLastMessage() != null) {
-                imageLoader.loadImage(ivLastMessageUser, dialog.getLastMessage().getUser().getAvatar());
+                imageLoader.loadImage(ivLastMessageUser, dialog.getLastMessage().getUser().getAvatar(), null);
             }
             ivLastMessageUser.setVisibility(dialogStyle.isDialogMessageAvatarEnabled()
-                    && dialog.getUsers().size() > 1 ? VISIBLE : GONE);
+                    && dialog.getUsers().size() > 1
+                    && dialog.getLastMessage() != null ? VISIBLE : GONE);
 
             //Set Last message text
             if (dialog.getLastMessage() != null) {
                 tvLastMessage.setText(dialog.getLastMessage().getText());
+            } else {
+                tvLastMessage.setText(null);
             }
 
             //Set Unread message count bubble

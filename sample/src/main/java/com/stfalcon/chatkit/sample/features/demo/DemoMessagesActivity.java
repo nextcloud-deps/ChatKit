@@ -2,13 +2,14 @@ package com.stfalcon.chatkit.sample.features.demo;
 
 import android.os.Bundle;
 import android.os.Handler;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 
-import com.facebook.drawee.view.SimpleDraweeView;
+import com.squareup.picasso.Picasso;
 import com.stfalcon.chatkit.commons.ImageLoader;
 import com.stfalcon.chatkit.messages.MessagesListAdapter;
 import com.stfalcon.chatkit.sample.R;
@@ -44,8 +45,8 @@ public abstract class DemoMessagesActivity extends AppCompatActivity
 
         imageLoader = new ImageLoader() {
             @Override
-            public void loadImage(SimpleDraweeView imageView, String url) {
-
+            public void loadImage(ImageView imageView, String url, Object payload) {
+                Picasso.with(DemoMessagesActivity.this).load(url).into(imageView);
             }
         };
     }
