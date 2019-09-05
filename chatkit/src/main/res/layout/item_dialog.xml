@@ -53,7 +53,7 @@
             android:layout_toEndOf="@id/dialogAvatar"
             android:layout_toRightOf="@id/dialogAvatar">
 
-            <com.stfalcon.chatkit.utils.ShapeImageView
+            <com.facebook.drawee.view.SimpleDraweeView
                 android:id="@id/dialogLastMessageUserAvatar"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
