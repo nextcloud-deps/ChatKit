@@ -1,10 +1,11 @@
 package com.stfalcon.chatkit.sample.features.demo;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.squareup.picasso.Picasso;
 import com.stfalcon.chatkit.commons.ImageLoader;
 import com.stfalcon.chatkit.dialogs.DialogsListAdapter;
@@ -26,9 +27,9 @@ public abstract class DemoDialogsActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
 
         imageLoader = new ImageLoader() {
-            @Override
-            public void loadImage(ImageView imageView, String url, Object payload) {
-                Picasso.with(DemoDialogsActivity.this).load(url).into(imageView);
+            @Override public void loadImage(SimpleDraweeView imageView, @Nullable String url,
+                @Nullable Object payload) {
+
             }
         };
     }
