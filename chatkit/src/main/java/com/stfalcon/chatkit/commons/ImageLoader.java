@@ -18,6 +18,7 @@ package com.stfalcon.chatkit.commons;
 
 import android.widget.ImageView;
 
+import androidx.annotation.Nullable;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 /**
