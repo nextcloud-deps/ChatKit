@@ -106,7 +106,7 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
   @Override
   public void onBindViewHolder(ViewHolder holder, int position) {
     Wrapper wrapper = items.get(position);
-    holders.bind(holder, wrapper.item, wrapper.isSelected, imageLoader,
+    holders.bind(holder, wrapper.item, wrapper.isSelected, imageLoader, this,
         getMessageClickListener(wrapper),
         getMessageLongClickListener(wrapper),
         dateHeadersFormatter,
@@ -958,6 +958,7 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
      * Callback for implementing images loading in message list
      */
     protected ImageLoader imageLoader;
+    protected MessagesListAdapter messagesListAdapter;
 
     public BaseMessageViewHolder(View itemView) {
       super(itemView);

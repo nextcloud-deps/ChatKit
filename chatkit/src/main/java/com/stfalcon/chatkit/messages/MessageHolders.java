@@ -565,6 +565,7 @@ public class MessageHolders {
     @SuppressWarnings("unchecked")
     protected void bind(final ViewHolder holder, final Object item, boolean isSelected,
                         final ImageLoader imageLoader,
+                        final MessagesListAdapter messagesListAdapter,
                         final View.OnClickListener onMessageClickListener,
                         final View.OnLongClickListener onMessageLongClickListener,
                         final DateFormatter.Formatter dateHeadersFormatter,
@@ -573,6 +574,7 @@ public class MessageHolders {
         if (item instanceof IMessage) {
             ((MessageHolders.BaseMessageViewHolder) holder).isSelected = isSelected;
             ((MessageHolders.BaseMessageViewHolder) holder).imageLoader = imageLoader;
+            ((BaseMessageViewHolder) holder).messagesListAdapter = messagesListAdapter;
             holder.itemView.setOnLongClickListener(onMessageLongClickListener);
             holder.itemView.setOnClickListener(onMessageClickListener);
 
@@ -685,6 +687,7 @@ public class MessageHolders {
          * Callback for implementing images loading in message list
          */
         protected ImageLoader imageLoader;
+        protected MessagesListAdapter messagesListAdapter;
 
         @Deprecated
         public BaseMessageViewHolder(View itemView) {
