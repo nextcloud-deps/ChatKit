@@ -165,6 +165,7 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
    * PUBLIC METHODS
    * */
 
+  public void addToStart
   /**
    * Adds message to bottom of list and scroll if needed.
    *
@@ -180,7 +181,7 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
     items.add(0, element);
     notifyItemRangeInserted(0, isNewMessageToday ? 2 : 1);
     if (layoutManager != null && scroll) {
-      layoutManager.scrollToPosition(0);
+      layoutManager.scrollToPosition(getMessagePositionById(message.getId()));
     }
   }
 
