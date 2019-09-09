@@ -541,6 +541,16 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
     this.dateHeadersFormatter = dateHeadersFormatter;
   }
 
+  public Date getLatestDate() {
+    for (int i = items.size() - 1; i >= 0; i--) {
+      Wrapper wrapper = items.get(i);
+      if (wrapper.item instanceof Date) {
+        return (Date) wrapper.item;
+      }
+    }
+
+    return new Date(System.currentTimeMillis());
+  }
   /*
    * PRIVATE METHODS
    * */
@@ -568,7 +578,6 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
   }
 
   protected void generateDateHeaders(List<MESSAGE> messages) {
-    Wrapper newMessagesWrapper = new Wrapper(context.getString(R.string.chatkit_new_messages));
     for (int i = 0; i < messages.size(); i++) {
       MESSAGE message = messages.get(i);
 
