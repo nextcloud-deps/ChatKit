@@ -979,6 +979,29 @@ public class MessageHolders {
         }
     }
 
+    // uses same style as date, for now
+    
+    public static class DefaultStringHeaderViewHolder extends ViewHolder<String> implements DefaultMessageViewHolder {
+        protected TextView text;
+
+        public DefaultStringHeaderViewHolder(View itemView) {
+            super(itemView);
+            text = itemView.findViewById(R.id.messageText);
+        }
+
+        @Override public void onBind(String s) {
+            text.setText(s);
+        }
+
+        @Override public void applyStyle(MessagesListStyle style) {
+            text.setTextColor(style.getDateHeaderTextColor());
+            text.setTextSize(TypedValue.COMPLEX_UNIT_PX, style.getDateHeaderTextSize());
+            text.setTypeface(text.getTypeface(), style.getDateHeaderTextStyle());
+            text.setPadding(style.getDateHeaderPadding(), style.getDateHeaderPadding(),
+                style.getDateHeaderPadding(), style.getDateHeaderPadding());
+        }
+    }
+
     /**
      * Default view holder implementation for date header
      */
