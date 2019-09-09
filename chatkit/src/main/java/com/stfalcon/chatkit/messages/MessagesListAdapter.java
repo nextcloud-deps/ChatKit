@@ -746,6 +746,10 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
     clipboard.setPrimaryClip(clip);
   }
 
+  void setRecyclerView(RecyclerView recyclerView) {
+    this.recyclerView = recyclerView;
+  }
+
   void setLayoutManager(RecyclerView.LayoutManager layoutManager) {
     this.layoutManager = layoutManager;
   }
@@ -1070,7 +1074,6 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
   @Override
   public void onAttachedToRecyclerView(RecyclerView recyclerView) {
     super.onAttachedToRecyclerView(recyclerView);
-    recyclerView = recyclerView;
     context = recyclerView.getContext();
   }
 
