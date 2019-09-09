@@ -164,8 +164,6 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
   /*
    * PUBLIC METHODS
    * */
-
-  public void addToStart
   /**
    * Adds message to bottom of list and scroll if needed.
    *
