@@ -62,8 +62,8 @@ public class MessagesList extends RecyclerView {
      * @param <MESSAGE> Message model class
      */
     public <MESSAGE extends IMessage>
-    void setAdapter(MessagesListAdapter<MESSAGE> adapter, RecyclerView recyclerView) {
-        setAdapter(adapter, true, recyclerView);
+    void setAdapter(MessagesListAdapter<MESSAGE> adapter) {
+        setAdapter(adapter, true);
     }
 
     /**
@@ -74,7 +74,7 @@ public class MessagesList extends RecyclerView {
      * @param <MESSAGE>     Message model class
      */
     public <MESSAGE extends IMessage>
-    void setAdapter(MessagesListAdapter<MESSAGE> adapter, boolean reverseLayout, RecyclerView recyclerView) {
+    void setAdapter(MessagesListAdapter<MESSAGE> adapter, boolean reverseLayout) {
         SimpleItemAnimator itemAnimator = new DefaultItemAnimator();
         itemAnimator.setSupportsChangeAnimations(false);
 
@@ -83,7 +83,7 @@ public class MessagesList extends RecyclerView {
 
         setItemAnimator(itemAnimator);
         setLayoutManager(layoutManager);
-        adapter.setRecyclerView(recyclerView);
+        adapter.setRecyclerView(this);
         adapter.setLayoutManager(layoutManager);
         adapter.setStyle(messagesListStyle);
 
