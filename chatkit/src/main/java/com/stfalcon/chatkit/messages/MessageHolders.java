@@ -980,7 +980,7 @@ public class MessageHolders {
     }
 
     // uses same style as date, for now
-    
+
     public static class DefaultStringHeaderViewHolder extends ViewHolder<String> implements DefaultMessageViewHolder {
         protected TextView text;
 

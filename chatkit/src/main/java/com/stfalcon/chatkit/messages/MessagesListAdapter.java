@@ -548,11 +548,6 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
     for (int i = 0; i < messages.size(); i++) {
       MESSAGE message = messages.get(i);
 
-      if (!message.getIsMessageRead()) {
-        this.items.remove(newMessagesWrapper);
-        this.items.add(newMessagesWrapper);
-      }
-
       this.items.add(new Wrapper<>(message));
 
       if (messages.size() > i + 1) {
