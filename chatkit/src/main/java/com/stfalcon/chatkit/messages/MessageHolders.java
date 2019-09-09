@@ -1029,36 +1029,41 @@ public class MessageHolders {
 
     // uses same style as date, for now
 
-    public static class DefaultStringHeaderViewHolder extends ViewHolder<String> implements DefaultMessageViewHolder {
-        protected TextView text;
+    /**
+     * Base view holder for incoming message
+     */
+    public abstract static class SystemMessageViewHolder<MESSAGE extends IMessage>
+        extends BaseMessageViewHolder<MESSAGE> implements DefaultMessageViewHolder {
 
-        public DefaultStringHeaderViewHolder(View itemView) {
+        protected TextView textView;
+
+        @Deprecated
+        public SystemMessageViewHolder(View itemView) {
             super(itemView);
-            text = itemView.findViewById(R.id.messageText);
+            init(itemView);
         }
 
-        @Override public void viewDetached() {
-
+        public SystemMessageViewHolder(View itemView, Object payload) {
+            super(itemView, payload);
+            init(itemView);
         }
 
-        @Override public void viewAttached() {
-
+        @Override
+        public void onBind(MESSAGE message) {
+            textView.setText(message.getText());
         }
 
-        @Override public void viewRecycled() {
-
-        }
-
-        @Override public void onBind(String s) {
-            text.setText(s);
-        }
-
-        @Override public void applyStyle(MessagesListStyle style) {
-            text.setTextColor(style.getDateHeaderTextColor());
-            text.setTextSize(TypedValue.COMPLEX_UNIT_PX, style.getDateHeaderTextSize());
-            text.setTypeface(text.getTypeface(), style.getDateHeaderTextStyle());
-            text.setPadding(style.getDateHeaderPadding(), style.getDateHeaderPadding(),
+        @Override
+        public void applyStyle(MessagesListStyle style) {
+            textView.setTextColor(style.getDateHeaderTextColor());
+            textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, style.getDateHeaderTextSize());
+            textView.setTypeface(textView.getTypeface(), style.getDateHeaderTextStyle());
+            textView.setPadding(style.getDateHeaderPadding(), style.getDateHeaderPadding(),
                 style.getDateHeaderPadding(), style.getDateHeaderPadding());
+        }
+
+        private void init(View itemView) {
+            textView = itemView.findViewById(R.id.messageText);
         }
     }
 

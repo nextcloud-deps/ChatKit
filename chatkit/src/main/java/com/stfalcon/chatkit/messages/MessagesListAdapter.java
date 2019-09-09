@@ -94,7 +94,7 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
     this.holders = holders;
     this.imageLoader = imageLoader;
     this.items = new ArrayList<>();
-    this.adapter = this;
+    adapter = this;
   }
 
   @Override
