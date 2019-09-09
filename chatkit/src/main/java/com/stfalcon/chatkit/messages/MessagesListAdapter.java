@@ -67,7 +67,7 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
   private MessagesListStyle messagesListStyle;
   private DateFormatter.Formatter dateHeadersFormatter;
   private SparseArray<OnMessageViewClickListener> viewClickListenersArray = new SparseArray<>();
-
+  private static MessagesListAdapter adapter;
   private Context context;
 
   /**
@@ -94,6 +94,7 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
     this.holders = holders;
     this.imageLoader = imageLoader;
     this.items = new ArrayList<>();
+    this.adapter = this;
   }
 
   @Override
@@ -989,6 +990,8 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
       return imageLoader;
     }
 
+    public MessagesListAdapter getAdapter() { return adapter; }
+
     protected void configureLinksBehavior(final TextView text) {
       text.setLinksClickable(false);
       text.setMovementMethod(new LinkMovementMethod() {
@@ -1072,6 +1075,7 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
   public static class IncomingMessageViewHolder<MESSAGE extends IMessage>
       extends MessageHolders.IncomingTextMessageViewHolder<MESSAGE>
       implements MessageHolders.DefaultMessageViewHolder {
+
 
     public IncomingMessageViewHolder(View itemView) {
       super(itemView);

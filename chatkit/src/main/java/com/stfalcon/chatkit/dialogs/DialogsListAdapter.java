@@ -539,7 +539,6 @@ public class DialogsListAdapter<DIALOG extends IDialog>
         }
 
         @Override public void viewDetached() {
-            
         }
 
         @Override public void viewAttached() {
