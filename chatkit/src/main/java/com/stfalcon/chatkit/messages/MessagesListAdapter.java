@@ -64,6 +64,7 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
   private OnMessageViewLongClickListener<MESSAGE> onMessageViewLongClickListener;
   private ImageLoader imageLoader;
   private RecyclerView.LayoutManager layoutManager;
+  private RecyclerView recyclerView;
   private MessagesListStyle messagesListStyle;
   private DateFormatter.Formatter dateHeadersFormatter;
   private SparseArray<OnMessageViewClickListener> viewClickListenersArray = new SparseArray<>();
@@ -316,11 +317,15 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
    * @param id identifier of message to delete.
    */
   public void deleteById(String id) {
-    int index = getMessagePositionById(id);
+    final int index = getMessagePositionById(id);
     if (index >= 0) {
-      items.remove(index);
-      notifyItemRemoved(index);
-      recountDateHeaders();
+      recyclerView.post(new Runnable() {
+        @Override public void run() {
+          items.remove(index);
+          notifyItemRemoved(index);
+          recountDateHeaders();
+        }
+      });
     }
   }
 
@@ -1065,6 +1070,7 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
   @Override
   public void onAttachedToRecyclerView(RecyclerView recyclerView) {
     super.onAttachedToRecyclerView(recyclerView);
+    recyclerView = recyclerView;
     context = recyclerView.getContext();
   }
 
