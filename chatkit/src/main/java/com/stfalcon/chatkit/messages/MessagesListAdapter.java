@@ -35,12 +35,10 @@ import com.stfalcon.chatkit.commons.ImageLoader;
 import com.stfalcon.chatkit.commons.ViewHolder;
 import com.stfalcon.chatkit.commons.models.IMessage;
 import com.stfalcon.chatkit.utils.DateFormatter;
-import java.sql.Wrapper;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import java.util.function.Predicate;
 
 /**
  * Adapter for {@link MessagesList}.
@@ -160,12 +158,7 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
     }
     Wrapper<MESSAGE> element = new Wrapper<>(message);
     items.add(0, element);
-
-    List<MESSAGE> messages = new ArrayList<>();
-    messages.add(message);
-    generateDateHeaders(messages);
-
-    notifyDataSetChanged();
+    notifyItemRangeInserted(0, isNewMessageToday ? 2 : 1);
     if (layoutManager != null && scroll) {
       layoutManager.scrollToPosition(0);
     }
@@ -183,24 +176,17 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
     if (reverse) Collections.reverse(messages);
 
     if (!items.isEmpty()) {
-      int lastItemPosition;
-      Date lastItem;
-
-      if (items.get(items.size() - 1).item instanceof Date) {
-        lastItemPosition = items.size() - 1;
-        lastItem = (Date) items.get(lastItemPosition).item;
-      } else {
-        lastItemPosition = items.size() - 2;
-        lastItem = (Date) items.get(lastItemPosition).item;
-      }
-
+      int lastItemPosition = items.size() - 1;
+      Date lastItem = (Date) items.get(lastItemPosition).item;
       if (DateFormatter.isSameDay(messages.get(0).getCreatedAt(), lastItem)) {
         items.remove(lastItemPosition);
+        notifyItemRemoved(lastItemPosition);
       }
     }
 
+    int oldSize = items.size();
     generateDateHeaders(messages);
-    notifyDataSetChanged();
+    notifyItemRangeInserted(oldSize, items.size() - oldSize);
   }
 
   /**
@@ -224,7 +210,7 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
     if (position >= 0) {
       Wrapper<MESSAGE> element = new Wrapper<>(newMessage);
       items.set(position, element);
-      notifyDataSetChanged();
+      notifyItemChanged(position);
       return true;
     } else {
       return false;
@@ -242,7 +228,8 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
       Wrapper<MESSAGE> element = new Wrapper<>(newMessage);
       items.remove(position);
       items.add(0, element);
-      notifyDataSetChanged();
+      notifyItemMoved(position, 0);
+      notifyItemChanged(0);
     }
   }
 
@@ -558,11 +545,13 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
 
   protected void generateDateHeaders(List<MESSAGE> messages) {
     Wrapper newMessagesWrapper = new Wrapper(context.getString(R.string.chatkit_new_messages));
-
-    boolean hasUnreadMessages = false;
     for (int i = 0; i < messages.size(); i++) {
       MESSAGE message = messages.get(i);
 
+      if (!message.getIsMessageRead()) {
+        this.items.remove(newMessagesWrapper);
+        this.items.add(newMessagesWrapper);
+      }
 
       this.items.add(new Wrapper<>(message));
 
@@ -574,21 +563,6 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
       } else {
         this.items.add(new Wrapper<>(message.getCreatedAt()));
       }
-
-      if (!message.getIsMessageRead()) {
-        for (int j = items.size() - 1; j >= 0; j--) {
-          if (this.items.get(j).item instanceof String) {
-            this.items.remove(j);
-          }
-        }
-
-        this.items.add(newMessagesWrapper);
-        hasUnreadMessages = true;
-      }
-    }
-    
-    if (!hasUnreadMessages) {
-      this.items.remove(newMessagesWrapper);
     }
   }
 

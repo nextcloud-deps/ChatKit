@@ -33,16 +33,12 @@ import java.util.List;
 @SuppressWarnings("WeakerAccess")
 public class MessageHolders {
 
-    private static final short VIEW_TYPE_NEW_MESSAGES_HEADER = 129;
     private static final short VIEW_TYPE_DATE_HEADER = 130;
     private static final short VIEW_TYPE_TEXT_MESSAGE = 131;
     private static final short VIEW_TYPE_IMAGE_MESSAGE = 132;
 
     private Class<? extends ViewHolder<Date>> dateHeaderHolder;
-    private Class<? extends ViewHolder<String>> newMessagesHeaderHolder;
-
     private int dateHeaderLayout;
-    private int newMessagesHeaderLayout;
 
     private HolderConfig<IMessage> incomingTextConfig;
     private HolderConfig<IMessage> outcomingTextConfig;
@@ -55,8 +51,6 @@ public class MessageHolders {
     public MessageHolders() {
         this.dateHeaderHolder = DefaultDateHeaderViewHolder.class;
         this.dateHeaderLayout = R.layout.item_date_header;
-        this.newMessagesHeaderHolder = DefaultStringHeaderViewHolder.class;
-        this.newMessagesHeaderLayout = R.layout.item_date_header;
 
         this.incomingTextConfig = new HolderConfig<>(DefaultIncomingTextMessageViewHolder.class, R.layout.item_incoming_text_message);
         this.outcomingTextConfig = new HolderConfig<>(DefaultOutcomingTextMessageViewHolder.class, R.layout.item_outcoming_text_message);
@@ -65,42 +59,6 @@ public class MessageHolders {
     }
 
     /**
-     * Sets both of custom view holder class and layout resource for date header.
-     *
-     * @param holder holder class.
-     * @param layout layout resource.
-     * @return {@link MessageHolders} for subsequent configuration.
-     */
-    public MessageHolders setNewMessagesHeaderConfig(
-        @NonNull Class<? extends ViewHolder<String>> holder,
-        @LayoutRes int layout) {
-        this.newMessagesHeaderHolder = holder;
-        this.newMessagesHeaderLayout = layout;
-        return this;
-    }
-
-    /**
-     * Sets custom view holder class for date header.
-     *
-     * @param holder holder class.
-     * @return {@link MessageHolders} for subsequent configuration.
-     */
-    public MessageHolders setNewMessagesHeaderHolder(@NonNull Class<? extends ViewHolder<String>> holder) {
-        this.newMessagesHeaderHolder = holder;
-        return this;
-    }
-
-    /**
-     * Sets custom layout reource for date header.
-     *
-     * @param layout layout resource.
-     * @return {@link MessageHolders} for subsequent configuration.
-     */
-    public MessageHolders setNewMessagesHeaderLayout(@LayoutRes int layout) {
-        this.newMessagesHeaderLayout = layout;
-        return this;
-    }    /**
-
      * Sets both of custom view holder class and layout resource for incoming text message.
      *
      * @param holder holder class.
@@ -581,8 +539,6 @@ public class MessageHolders {
 
     protected ViewHolder getHolder(ViewGroup parent, int viewType, MessagesListStyle messagesListStyle) {
         switch (viewType) {
-            case VIEW_TYPE_NEW_MESSAGES_HEADER:
-                return getHolder(parent, newMessagesHeaderLayout, newMessagesHeaderHolder, messagesListStyle, null);
             case VIEW_TYPE_DATE_HEADER:
                 return getHolder(parent, dateHeaderLayout, dateHeaderHolder, messagesListStyle, null);
             case VIEW_TYPE_TEXT_MESSAGE:
@@ -649,8 +605,6 @@ public class MessageHolders {
             isOutcoming = message.getUser().getId().contentEquals(senderId);
             viewType = getContentViewType(message);
 
-        } else if (item instanceof String) {
-            viewType = VIEW_TYPE_NEW_MESSAGES_HEADER;
         } else viewType = VIEW_TYPE_DATE_HEADER;
 
         return isOutcoming ? viewType * -1 : viewType;
@@ -1022,38 +976,6 @@ public class MessageHolders {
         private void init(View itemView) {
             image = itemView.findViewById(R.id.image);
             imageOverlay = itemView.findViewById(R.id.imageOverlay);
-        }
-    }
-
-    /**
-     * Default view holder implementation for date header
-     */
-    public static class DefaultStringHeaderViewHolder extends ViewHolder<String>
-        implements DefaultMessageViewHolder {
-
-        protected TextView text;
-
-        public DefaultStringHeaderViewHolder(View itemView) {
-            super(itemView);
-            text = itemView.findViewById(R.id.messageText);
-        }
-
-        @Override
-        public void onBind(String newText) {
-            if (newText != null) {
-                text.setText(newText);
-            }
-        }
-
-        @Override
-        public void applyStyle(MessagesListStyle style) {
-            if (text != null) {
-                text.setTextColor(style.getDateHeaderTextColor());
-                text.setTextSize(TypedValue.COMPLEX_UNIT_PX, style.getDateHeaderTextSize());
-                text.setTypeface(text.getTypeface(), style.getDateHeaderTextStyle());
-                text.setPadding(style.getDateHeaderPadding(), style.getDateHeaderPadding(),
-                    style.getDateHeaderPadding(), style.getDateHeaderPadding());
-            }
         }
     }
 

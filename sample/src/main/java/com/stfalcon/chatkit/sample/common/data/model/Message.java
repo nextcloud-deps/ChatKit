@@ -50,10 +50,6 @@ public class Message implements IMessage,
         return null;
     }
 
-    @Override public boolean getIsMessageRead() {
-        return false;
-    }
-
     @Override
     public User getUser() {
         return this.user;
