@@ -754,6 +754,18 @@ public class MessageHolders {
             init(itemView);
         }
 
+        @Override public void viewDetached() {
+
+        }
+
+        @Override public void viewAttached() {
+
+        }
+
+        @Override public void viewRecycled() {
+
+        }
+
         public IncomingTextMessageViewHolder(View itemView, Object payload) {
             super(itemView, payload);
             init(itemView);
@@ -813,6 +825,18 @@ public class MessageHolders {
             init(itemView);
         }
 
+        @Override public void viewDetached() {
+            
+        }
+
+        @Override public void viewAttached() {
+
+        }
+
+        @Override public void viewRecycled() {
+
+        }
+
         public OutcomingTextMessageViewHolder(View itemView, Object payload) {
             super(itemView, payload);
             init(itemView);
@@ -870,6 +894,18 @@ public class MessageHolders {
         public IncomingImageMessageViewHolder(View itemView) {
             super(itemView);
             init(itemView);
+        }
+
+        @Override public void viewDetached() {
+
+        }
+
+        @Override public void viewAttached() {
+
+        }
+
+        @Override public void viewRecycled() {
+
         }
 
         public IncomingImageMessageViewHolder(View itemView, Object payload) {
@@ -933,6 +969,18 @@ public class MessageHolders {
             init(itemView);
         }
 
+        @Override public void viewDetached() {
+
+        }
+
+        @Override public void viewAttached() {
+
+        }
+
+        @Override public void viewRecycled() {
+
+        }
+
         public OutcomingImageMessageViewHolder(View itemView, Object payload) {
             super(itemView, payload);
             init(itemView);
@@ -989,6 +1037,18 @@ public class MessageHolders {
             text = itemView.findViewById(R.id.messageText);
         }
 
+        @Override public void viewDetached() {
+
+        }
+
+        @Override public void viewAttached() {
+
+        }
+
+        @Override public void viewRecycled() {
+
+        }
+
         @Override public void onBind(String s) {
             text.setText(s);
         }
@@ -1015,6 +1075,18 @@ public class MessageHolders {
         public DefaultDateHeaderViewHolder(View itemView) {
             super(itemView);
             text = itemView.findViewById(R.id.messageText);
+        }
+
+        @Override public void viewDetached() {
+
+        }
+
+        @Override public void viewAttached() {
+
+        }
+
+        @Override public void viewRecycled() {
+
         }
 
         @Override

@@ -1021,6 +1021,18 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
       text = (TextView) itemView.findViewById(R.id.messageText);
     }
 
+    @Override public void viewDetached() {
+
+    }
+
+    @Override public void viewAttached() {
+
+    }
+
+    @Override public void viewRecycled() {
+
+    }
+
     @Override
     public void onBind(Date date) {
       if (text != null) {
@@ -1063,6 +1075,18 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
 
     public IncomingMessageViewHolder(View itemView) {
       super(itemView);
+    }
+
+    @Override public void viewDetached() {
+
+    }
+
+    @Override public void viewAttached() {
+
+    }
+
+    @Override public void viewRecycled() {
+
     }
   }
 
