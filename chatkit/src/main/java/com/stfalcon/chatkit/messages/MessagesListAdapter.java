@@ -179,7 +179,7 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
     items.add(0, element);
     notifyItemRangeInserted(0, isNewMessageToday ? 2 : 1);
     if (layoutManager != null && scroll) {
-      layoutManager.scrollToPosition(getMessagePositionById(message.getId()));
+      layoutManager.scrollToPosition(0);
     }
   }
 
