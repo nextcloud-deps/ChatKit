@@ -113,6 +113,24 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
   }
 
   @Override
+  public void onViewDetachedFromWindow(ViewHolder holder) {
+    holder.viewDetached();
+    super.onViewDetachedFromWindow(holder);
+  }
+
+  @Override
+  public void onViewAttachedToWindow(ViewHolder holder) {
+    super.onViewAttachedToWindow(holder);
+    holder.viewAttached();
+  }
+
+  @Override
+  public void onViewRecycled(ViewHolder holder) {
+    super.onViewRecycled(holder);
+    holder.viewRecycled();
+  }
+
+  @Override
   public int getItemCount() {
     return items.size();
   }
