@@ -826,7 +826,7 @@ public class MessageHolders {
         }
 
         @Override public void viewDetached() {
-            
+
         }
 
         @Override public void viewAttached() {

@@ -538,6 +538,18 @@ public class DialogsListAdapter<DIALOG extends IDialog>
 
         }
 
+        @Override public void viewDetached() {
+            
+        }
+
+        @Override public void viewAttached() {
+
+        }
+
+        @Override public void viewRecycled() {
+
+        }
+
         private void applyStyle() {
             if (dialogStyle != null) {
                 //Texts
