@@ -164,6 +164,7 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
   /*
    * PUBLIC METHODS
    * */
+
   /**
    * Adds message to bottom of list and scroll if needed.
    *
@@ -171,6 +172,7 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
    * @param scroll {@code true} if need to scroll list to bottom when message added.
    */
   public void addToStart(MESSAGE message, boolean scroll) {
+
     boolean isNewMessageToday = !isPreviousSameDate(0, message.getCreatedAt());
     if (isNewMessageToday) {
       items.add(0, new Wrapper<>(message.getCreatedAt()));
@@ -594,7 +596,7 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
   }
 
   @SuppressWarnings("unchecked")
-  private int getMessagePositionById(String id) {
+  public int getMessagePositionById(String id) {
     for (int i = 0; i < items.size(); i++) {
       Wrapper wrapper = items.get(i);
       if (wrapper.item instanceof IMessage) {
@@ -604,6 +606,20 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
         }
       }
     }
+    return -1;
+  }
+
+  public int getMessagePositionByIdInReverse(String id) {
+    for (int i = items.size() -1; i >= 0; i--) {
+      Wrapper wrapper = items.get(i);
+      if (wrapper.item instanceof IMessage) {
+        MESSAGE message = (MESSAGE) wrapper.item;
+        if (message.getId().contentEquals(id)) {
+          return i;
+        }
+      }
+    }
+
     return -1;
   }
 
