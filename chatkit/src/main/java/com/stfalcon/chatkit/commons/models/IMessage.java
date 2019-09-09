@@ -57,6 +57,4 @@ public interface IMessage {
      * @return the message creation date
      */
     String getSystemMessage();
-
-    boolean getIsMessageRead();
 }
