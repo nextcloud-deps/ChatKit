@@ -531,7 +531,6 @@ public class DialogsListAdapter<DIALOG extends IDialog>
             tvDate = (TextView) itemView.findViewById(R.id.dialogDate);
             tvLastMessage = (TextView) itemView.findViewById(R.id.dialogLastMessage);
             tvBubble = (TextView) itemView.findViewById(R.id.dialogUnreadBubble);
-            ivLastMessageUser = itemView.findViewById(R.id.dialogLastMessageUserAvatar);
             ivAvatar = itemView.findViewById(R.id.dialogAvatar);
             dividerContainer = (ViewGroup) itemView.findViewById(R.id.dialogDividerContainer);
             divider = itemView.findViewById(R.id.dialogDivider);
@@ -675,9 +674,9 @@ public class DialogsListAdapter<DIALOG extends IDialog>
             if (imageLoader != null && dialog.getLastMessage() != null) {
                 imageLoader.loadImage(ivLastMessageUser, dialog.getLastMessage().getUser().getAvatar(), null);
             }
-            ivLastMessageUser.setVisibility(dialogStyle.isDialogMessageAvatarEnabled()
-                    && dialog.getUsers().size() > 1
-                    && dialog.getLastMessage() != null ? VISIBLE : GONE);
+            //ivLastMessageUser.setVisibility(dialogStyle.isDialogMessageAvatarEnabled()
+             //       && dialog.getUsers().size() > 1
+             //       && dialog.getLastMessage() != null ? VISIBLE : GONE);
 
             //Set Last message text
             if (dialog.getLastMessage() != null) {
