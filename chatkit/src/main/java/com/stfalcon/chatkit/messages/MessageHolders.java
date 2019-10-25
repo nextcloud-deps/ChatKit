@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.facebook.drawee.view.SimpleDraweeView;
 import com.stfalcon.chatkit.R;
 import com.stfalcon.chatkit.commons.ImageLoader;
 import com.stfalcon.chatkit.commons.ViewHolder;
@@ -890,7 +889,7 @@ public class MessageHolders {
     public static class IncomingImageMessageViewHolder<MESSAGE extends MessageContentType.Image>
             extends BaseIncomingMessageViewHolder<MESSAGE> {
 
-        protected SimpleDraweeView image;
+        protected ImageView image;
         protected View imageOverlay;
 
         @Deprecated
@@ -963,7 +962,7 @@ public class MessageHolders {
     public static class OutcomingImageMessageViewHolder<MESSAGE extends MessageContentType.Image>
             extends BaseOutcomingMessageViewHolder<MESSAGE> {
 
-        protected SimpleDraweeView image;
+        protected ImageView image;
         protected View imageOverlay;
 
         @Deprecated
@@ -1127,7 +1126,7 @@ public class MessageHolders {
             extends BaseMessageViewHolder<MESSAGE> implements DefaultMessageViewHolder {
 
         protected TextView time;
-        protected SimpleDraweeView userAvatar;
+        protected ImageView userAvatar;
 
         @Deprecated
         public BaseIncomingMessageViewHolder(View itemView) {

@@ -5,8 +5,6 @@ import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import com.facebook.drawee.view.SimpleDraweeView;
-import com.squareup.picasso.Picasso;
 import com.stfalcon.chatkit.commons.ImageLoader;
 import com.stfalcon.chatkit.dialogs.DialogsListAdapter;
 import com.stfalcon.chatkit.sample.common.data.model.Dialog;
@@ -27,7 +25,7 @@ public abstract class DemoDialogsActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
 
         imageLoader = new ImageLoader() {
-            @Override public void loadImage(SimpleDraweeView imageView, @Nullable String url,
+            @Override public void loadImage(ImageView imageView, @Nullable String url,
                 @Nullable Object payload) {
 
             }

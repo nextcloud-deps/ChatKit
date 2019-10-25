@@ -18,6 +18,7 @@ package com.stfalcon.chatkit.dialogs;
 
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
+import android.widget.ImageView;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,7 +28,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.facebook.drawee.view.SimpleDraweeView;
 import com.stfalcon.chatkit.R;
 import com.stfalcon.chatkit.commons.ImageLoader;
 import com.stfalcon.chatkit.commons.ViewHolder;
@@ -516,8 +516,8 @@ public class DialogsListAdapter<DIALOG extends IDialog>
         protected ViewGroup root;
         protected TextView tvName;
         protected TextView tvDate;
-        protected SimpleDraweeView ivAvatar;
-        protected SimpleDraweeView ivLastMessageUser;
+        protected ImageView ivAvatar;
+        protected ImageView ivLastMessageUser;
         protected TextView tvLastMessage;
         protected TextView tvBubble;
         protected ViewGroup dividerContainer;
