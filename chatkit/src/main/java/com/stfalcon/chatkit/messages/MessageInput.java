@@ -31,7 +31,7 @@ import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import androidx.emoji.widget.EmojiEditText;
+import androidx.emoji2.widget.EmojiEditText;
 import com.stfalcon.chatkit.R;
 
 import java.lang.reflect.Field;
